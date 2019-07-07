@@ -1,62 +1,69 @@
 #SmoothCheckBox
 
-### ScreenShot 截图:
+
+
+## Intro
+
+- This repo is Forked [here](https://github.com/andyxialm/SmoothCheckBox)
+- migrate `kotlin`
+- add custom attribute
+- Origin license [here](https://github.com/andyxialm/SmoothCheckBox/blob/master/README.md#license)
+
+
+
+### ScreenShot 
 
 ![](https://github.com/andyxialm/SmoothCheckBox/blob/master/art/smoothcb.gif?raw=true)
 
-### Attrs 属性
+### Attrs
 |attr|format|description|
 |---|:---|:---:|
-|duration|integer|动画持续时间|
-|stroke_width|dimension|未选中时边框宽度|
-|color_tick|color|对勾颜色|
-|color_checked|color|选中时填充颜色|
-|color_unchecked|color|未选中时填充颜色|
-|color_unchecked_stroke|color|未选中时边框颜色|
+|duration|integer|set animation duration|
+|stroke_width|dimension|stroke width|
+|color_tick|color|tick color|
+|color_checked|color|Checked color|
+|color_unchecked|color|un checked color|
+|color_unchecked_stroke|color|un checked storke color|
+|stroke_enable|boolean|Check box stroke enable (default: false)|
 
 
-## Sample Usage 使用
+
+## Sample Usage 
 
 
-```java
+```kotlin
  
-    setChecked(boolean checked);                   // 默认不带动画，若需要动画 调用重载方法
-    setChecked(boolean checked, boolean animate);  // 参数: animate 是否显示动画
+    setChecked(checked: Boolean)                 
+    setChecked(checked: Boolean, animate: Boolean)  
 ```
 
 
-```java
+```kotlin
 
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_sample);
+     override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_sample)
 
-        final SmoothCheckBox scb = (SmoothCheckBox) findViewById(R.id.scb);
-        scb.setOnCheckedChangeListener(new SmoothCheckBox.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(SmoothCheckBox checkBox, boolean isChecked) {
-                Log.d("SmoothCheckBox", String.valueOf(isChecked));
+        scb.setOnCheckedChangeListener(object : SmoothCheckBox.OnCheckedChangeListener {
+            override fun onCheckedChanged(checkBox: SmoothCheckBox, isChecked: Boolean) {
+                Log.d("SmoothCheckBox", isChecked.toString())
             }
-        });
-    }    
+        })
+    }
 ```
 
-## About me
 
-An android developer in Beijing.
-
-Welcome to [offer me](mailto:andyxialm@gmail.com). :smiley:
 
 ## License
 
-    Copyright 2015, 2016 andy
-
+    Copyright 2019 lhoyong
+    
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
     You may obtain a copy of the License at
-
+    
        http://www.apache.org/licenses/LICENSE-2.0
-
+    
     Unless required by applicable law or agreed to in writing, software
     distributed under the License is distributed on an "AS IS" BASIS,
     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
