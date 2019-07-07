@@ -1,4 +1,4 @@
-package cn.refactor.library;
+package com.lhoyong.library;
 
 import android.app.Application;
 import android.test.ApplicationTestCase;

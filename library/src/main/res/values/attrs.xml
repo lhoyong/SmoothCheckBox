@@ -1,6 +1,7 @@
 <resources>
     <declare-styleable name="SmoothCheckBox">
         <attr name="duration" format="integer"/>
+        <attr name="stroke_enable" format="boolean"/>
         <attr name="stroke_width" format="dimension"/>
         <attr name="color_tick" format="color"/>
         <attr name="color_checked" format="color"/>

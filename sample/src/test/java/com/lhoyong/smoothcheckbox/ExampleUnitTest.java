@@ -1,4 +1,4 @@
-package cn.refactor.library;
+package com.lhoyong.smoothcheckbox;
 
 import org.junit.Test;
 

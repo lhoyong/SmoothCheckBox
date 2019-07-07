@@ -1,4 +1,4 @@
-package cn.refactor.smoothcheckbox;
+package com.lhoyong.smoothcheckbox;
 
 import android.app.Application;
 import android.test.ApplicationTestCase;

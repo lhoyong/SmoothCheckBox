@@ -20,7 +20,7 @@
         android:textSize="20sp"
         android:textStyle="bold|italic"/>
 
-    <cn.refactor.library.SmoothCheckBox
+    <com.lhoyong.library.SmoothCheckBox
         android:id="@+id/scb"
         android:layout_width="20dp"
         android:layout_height="20dp"
