@@ -207,6 +207,13 @@ class SmoothCheckBox @JvmOverloads constructor(
         }
     }
 
+    fun setColor(color: Int){
+        mUnCheckedColor = color
+        mCheckedColor = color
+        mFloorColor = color
+        invalidate()
+    }
+
     /**
      * checked with animation
      * @param checked checked
