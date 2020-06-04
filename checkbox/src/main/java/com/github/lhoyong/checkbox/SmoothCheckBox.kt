@@ -1,77 +1,18 @@
-/**
- * * Copyright 2016 andy
- *
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-
-/**
- * * Copyright 2019 lhoyong
- *
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
 package com.github.lhoyong.checkbox
 
 import android.animation.AnimatorSet
 import android.animation.ValueAnimator
 import android.content.Context
-import android.graphics.Canvas
-import android.graphics.Color
-import android.graphics.Paint
-import android.graphics.Path
-import android.graphics.Point
+import android.graphics.*
 import android.os.Bundle
 import android.os.Parcelable
 import android.util.AttributeSet
 import android.view.View
 import android.view.animation.LinearInterpolator
 import android.widget.Checkable
-import androidx.core.animation.doOnEnd
 import kotlin.math.pow
 import kotlin.math.roundToInt
 import kotlin.math.sqrt
-
-/**
- * Author : andy
- * Date   : 16/1/21 11:28
- * Email  : andyxialm@gmail.com
- * Github : github.com/andyxialm
- * Description : A custom CheckBox with animation for Android
- *
- *
- * Fixed 2019/7/7
- *
- * Author : lhoyong
- * Email : lee199402@gmail.com
- * Github : github.com/lhoyong
- * Description : A custom CheckBox with animation for Android for Kotlin
- *
- **/
 
 class SmoothCheckBox @JvmOverloads constructor(
         context: Context,
@@ -386,7 +327,7 @@ class SmoothCheckBox @JvmOverloads constructor(
             interpolator = LinearInterpolator()
             playTogether(listOf(animator, floorAnimator))
             doEnd {
-                mListener?.onCheckedAnimatedFinished(this@SmoothCheckBox, mChecked)
+                mListener?.onAnimatedFinished(this@SmoothCheckBox, mChecked)
             }
             start()
         }
@@ -421,7 +362,7 @@ class SmoothCheckBox @JvmOverloads constructor(
             duration = mAnimDuration.toLong()
             interpolator = LinearInterpolator()
             doEnd {
-                mListener?.onCheckedAnimatedFinished(this@SmoothCheckBox, mChecked)
+                mListener?.onAnimatedFinished(this@SmoothCheckBox, mChecked)
             }
             start()
         }
@@ -440,6 +381,6 @@ class SmoothCheckBox @JvmOverloads constructor(
 
     interface OnCheckedChangeListener {
         fun onCheckedChanged(checkBox: SmoothCheckBox, isChecked: Boolean)
-        fun onCheckedAnimatedFinished(checkBox: SmoothCheckBox, isChecked: Boolean)
+        fun onAnimatedFinished(checkBox: SmoothCheckBox, isChecked: Boolean)
     }
 }

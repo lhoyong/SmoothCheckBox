@@ -16,7 +16,7 @@ class SampleActivity : AppCompatActivity() {
                 Log.d("SmoothCheckBox", isChecked.toString())
             }
 
-            override fun onCheckedAnimatedFinished(checkBox: SmoothCheckBox, isChecked: Boolean) {
+            override fun onAnimatedFinished(checkBox: SmoothCheckBox, isChecked: Boolean) {
                 Log.d("SmoothCheckBox", isChecked.toString())
             }
         })

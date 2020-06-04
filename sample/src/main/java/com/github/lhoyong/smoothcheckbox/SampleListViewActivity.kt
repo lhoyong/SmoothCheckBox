@@ -54,7 +54,7 @@ class SampleListViewActivity : AppCompatActivity() {
                         bean.isChecked = isChecked
                     }
 
-                    override fun onCheckedAnimatedFinished(checkBox: SmoothCheckBox, isChecked: Boolean) {
+                    override fun onAnimatedFinished(checkBox: SmoothCheckBox, isChecked: Boolean) {
 
                     }
                 })
