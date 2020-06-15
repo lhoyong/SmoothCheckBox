@@ -18,6 +18,7 @@
         android:layout_height="40dp"
         android:layout_margin="5dp"
         android:paddingTop="10dp"
+        app:check_enable="false"
         app:color_checked="@color/colorAccent"
         app:color_unchecked="@color/colorAccent"
         app:stroke_enable="false" />

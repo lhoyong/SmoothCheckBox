@@ -76,6 +76,8 @@ class SmoothCheckBox @JvmOverloads constructor(
     private var mTickDrawing: Boolean = false
     private var mListener: OnCheckedChangeListener? = null
 
+    private var mEnabled: Boolean = true
+
 
     init {
         val ta = context.obtainStyledAttributes(attrs, R.styleable.SmoothCheckBox)
@@ -86,6 +88,7 @@ class SmoothCheckBox @JvmOverloads constructor(
         mUnCheckedColor = ta.getColor(R.styleable.SmoothCheckBox_color_unchecked, COLOR_UNCHECKED)
         mStrokeWidth = ta.getDimensionPixelSize(R.styleable.SmoothCheckBox_stroke_width, dp2px(context, 0f))
         strokeEnable = ta.getBoolean(R.styleable.SmoothCheckBox_stroke_enable, false)
+        mEnabled = ta.getBoolean(R.styleable.SmoothCheckBox_check_enable, true)
         ta.recycle()
 
         mFloorUnCheckedColor = mFloorColor
@@ -107,6 +110,7 @@ class SmoothCheckBox @JvmOverloads constructor(
         mTickPoints = mutableListOf(Point(), Point(), Point())
 
         setOnClickListener {
+            if(!mEnabled) return@setOnClickListener
             toggle()
             mTickDrawing = false
             mDrewDistance = 0f
@@ -179,6 +183,10 @@ class SmoothCheckBox @JvmOverloads constructor(
         } else {
             this.isChecked = checked
         }
+    }
+
+    fun setCheckEnable(checkEnable: Boolean) {
+        mEnabled = checkEnable
     }
 
     private fun reset() {
@@ -308,19 +316,21 @@ class SmoothCheckBox @JvmOverloads constructor(
     }
 
     private fun startCheckedAnimation() {
-        val animator = ValueAnimator.ofFloat(1.0f, 0f)
-        animator.duration = (mAnimDuration / 3 * 2).toLong()
-        animator.addUpdateListener { animation ->
-            mScaleVal = animation.animatedValue as Float
-            mFloorColor = getGradientColor(mUnCheckedColor, mCheckedColor, 1 - mScaleVal)
-            postInvalidate()
+        val animator = ValueAnimator.ofFloat(1.0f, 0f).apply {
+            duration = (mAnimDuration / 3 * 2).toLong()
+            addUpdateListener { animation ->
+                mScaleVal = animation.animatedValue as Float
+                mFloorColor = getGradientColor(mUnCheckedColor, mCheckedColor, 1 - mScaleVal)
+                postInvalidate()
+            }
         }
 
-        val floorAnimator = ValueAnimator.ofFloat(1.0f, 0.8f, 1.0f)
-        floorAnimator.duration = mAnimDuration.toLong()
-        floorAnimator.addUpdateListener { animation ->
-            mFloorScale = animation.animatedValue as Float
-            postInvalidate()
+        val floorAnimator = ValueAnimator.ofFloat(1.0f, 0.8f, 1.0f).apply {
+            duration = mAnimDuration.toLong()
+            addUpdateListener { animation ->
+                mFloorScale = animation.animatedValue as Float
+                postInvalidate()
+            }
         }
 
         AnimatorSet().apply {
